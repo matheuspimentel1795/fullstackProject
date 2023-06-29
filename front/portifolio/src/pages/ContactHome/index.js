@@ -19,7 +19,7 @@ export const ContactHome = () =>{
         register,
         formState: { errors }
       } = methods
-      const [userList,setUserList] = useState()
+      const [userList,setUserList] = useState([])
       useEffect(()=>{
         api.get('/getAll')
         .then((response) => {
@@ -30,17 +30,17 @@ export const ContactHome = () =>{
           });
        
       },[])
-    
+    console.log(setUserList, 'teste')
     return (
         <Grid container collums={12}>
-            <Grid item xs={12}>
-                <HeaderContacts/>
+            <Grid item xs={12} height={'80px'}>
+               {userList?.length > 0 && <HeaderContacts userList={userList} setUserList={setUserList}/>}
             </Grid>
             {userList?.map((item)=>{
                 return(
                     <Grid sx={{border:'1px solid black'}} item xs={12} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
-                       <Grid item xs ={5} display={'flex'}  >
-                        <AccountCircleIcon sx={{width: '100px',height:'100px'}}/>
+                       <Grid item xs ={5} display={'flex'}  alignItems={'center'} >
+                        <AccountCircleIcon sx={{width: '60px',height:'60px'}}/>
                     <h1>{item.nome}</h1>
                     </Grid>
                     <CreateIcon/>

@@ -3,17 +3,12 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-export const HeaderContacts = (userList, setUserList) => {
+export const HeaderContacts = ({onChangeFunction}) => {
   const [filter, setFilter] = useState(false);
   const changeFilter = () => {
     setFilter(!filter);
   };
-
-  const onChangeFunction = (e) => {
-    const filtro = userList.userList?.filter((item) =>
-      item.nome.includes(e.target.value)
-    );
-  };
+console.log(onChangeFunction)
   return (
     <Grid sx={{ backgroundColor: filter ? "white" : "#128C7E" }} padding="2%">
       {filter ? (
@@ -25,7 +20,7 @@ export const HeaderContacts = (userList, setUserList) => {
         >
           <ArrowBackIcon onClick={changeFilter} />
           <TextField
-            onChange={onChangeFunction}
+            onChange={(e)=>onChangeFunction(e)}
             sx={{ backgroundColor: "white" }}
             fullWidth
             variant="standard"

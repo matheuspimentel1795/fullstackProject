@@ -20,23 +20,36 @@ export const ContactHome = () =>{
         formState: { errors }
       } = methods
       const [userList,setUserList] = useState([])
+      const [users, setUsers] = useState()
       useEffect(()=>{
         api.get('/getAll')
         .then((response) => {
             setUserList(response.data)
+            setUsers(response.data)
         })
           .catch((err) => {
             return err
           });
        
       },[])
-    console.log(setUserList, 'teste')
+      const onChangeFunction = (e) => {
+        if(e.target.value.length === 0){
+            setUserList(users)
+        }
+        else{
+            const filtro = userList?.filter((item) =>
+              item.nome.includes(e.target.value)
+            );
+            setUserList(filtro)
+        }
+        
+      };
     return (
         <Grid container collums={12}>
             <Grid item xs={12} height={'80px'}>
-               {userList?.length > 0 && <HeaderContacts userList={userList} setUserList={setUserList}/>}
+                {userList?.length > 0 && <HeaderContacts onChangeFunction={onChangeFunction}/>}
             </Grid>
-            {userList?.map((item)=>{
+            { userList?.length > 0 && userList?.map((item)=>{
                 return(
                     <Grid sx={{border:'1px solid black'}} item xs={12} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                        <Grid item xs ={5} display={'flex'}  alignItems={'center'} >
@@ -47,6 +60,8 @@ export const ContactHome = () =>{
                     </Grid>
                 )
             })}
+            {userList.length === 0 && 
+            <p>Nenhum contato encontrado</p>}
         </Grid>
     )
 }

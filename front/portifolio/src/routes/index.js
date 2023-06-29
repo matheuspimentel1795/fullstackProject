@@ -16,7 +16,9 @@ import {
   
 
   import { ContactRegister } from '../pages/ContactRegister'
-import Home from '../Home';
+
+import { ContactHome } from '../pages/ContactHome';
+
   
 
   export function GuestRoutes () {
@@ -40,12 +42,12 @@ import Home from '../Home';
 
         <Route path='/' element={ (
           <Suspense >
-            <ContactRegister />
+            <ContactHome />
           </Suspense>
         ) } />
-    <Route path='/teste' element={ (
+    <Route path='/cadastro' element={ (
           <Suspense >
-            <Home />
+            <ContactRegister />
           </Suspense>
         ) } />
        

@@ -20,8 +20,8 @@ export const ContactRegister = () =>{
 
     const addContact = (datas)=>{
         //console.log(navigate)
-       navigate('/teste')
-        //postContact(datas)
+       navigate('/')
+        postContact(datas)
     }
     const onChangeFunction = (e) => {
         console.log(e.target.value)

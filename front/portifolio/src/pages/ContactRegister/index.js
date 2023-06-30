@@ -51,7 +51,7 @@ export const ContactRegister = () => {
               {...register("nome")}
               onChange={(e) => setName(e.target.value)}
               id="outlined-basic"
-              label="Telefone"
+              label="Nome"
             />
           </Grid>
           <Grid item xs={12}>
@@ -59,7 +59,7 @@ export const ContactRegister = () => {
               {...register("telefone")}
               onChange={(e) => setTelNumber(e.target.value)}
               id="outlined-basic"
-              label="Nome"
+              label="Telefone"
             />
           </Grid>
           <Grid item xs={12}>

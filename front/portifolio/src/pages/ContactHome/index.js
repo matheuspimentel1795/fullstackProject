@@ -46,6 +46,9 @@ export const ContactHome = () =>{
       const goToRegister = () =>{
         navigate("/cadastro")
       }
+      const goToEditPage = (id) =>{
+        navigate(`/getById/${id}`)
+      }
     return (
         <Grid container collums={12}>
             <Grid item xs={12} height={'80px'}>
@@ -57,7 +60,7 @@ export const ContactHome = () =>{
             </Grid>
             { userList?.length > 0 && userList?.map((item)=>{
                 return(
-                    <Grid sx={{border:'1px solid black'}} item xs={12} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
+                    <Grid onClick={()=>goToEditPage(item.id)} sx={{border:'1px solid black'}} item xs={12} display={'flex'} alignItems={'center'} justifyContent={'space-between'}>
                        <Grid item xs ={5} display={'flex'}  alignItems={'center'} >
                         <AccountCircleIcon sx={{width: '60px',height:'60px', color: '#128C7E'}}/>
                     <p>{item.nome}</p>
@@ -67,7 +70,10 @@ export const ContactHome = () =>{
                 )
             })}
             {userList.length === 0 && 
-            <p>Nenhum contato encontrado</p>}
+            <Grid item textAlign={'center'} alignSelf='center'>
+            <p>Nenhum contato encontrado</p>
+            </Grid>
+            }
         </Grid>
     )
 }

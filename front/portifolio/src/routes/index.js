@@ -50,7 +50,11 @@ import { ContactHome } from '../pages/ContactHome';
             <ContactRegister />
           </Suspense>
         ) } />
-       
+        <Route path='/getById/:id' element={ (
+          <Suspense >
+            <ContactRegister />
+          </Suspense>
+        ) } />
       </Route>
 
       <Route path="*" element={ <Navigate to="/" replace /> } />

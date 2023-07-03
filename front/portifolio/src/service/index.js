@@ -1,11 +1,10 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api",
+  baseURL: "https://api-php-laravel-production.up.railway.app/api",
 });
 
 export const getContacts = ()=>{
-    let data
     api.get("/getAll")
     .then((response) => {
         return response.data

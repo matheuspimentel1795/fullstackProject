@@ -8,7 +8,7 @@ export const HeaderContacts = ({onChangeFunction}) => {
   const changeFilter = () => {
     setFilter(!filter);
   };
-console.log(onChangeFunction)
+
   return (
     <Grid sx={{ backgroundColor: filter ? "white" : "#128C7E" }} padding="2%">
       {filter ? (

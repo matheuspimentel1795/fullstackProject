@@ -1,11 +1,12 @@
 import TextField from "@mui/material/TextField";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Grid } from "@mui/material";
 
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
-import { postContact } from "../../service";
-import { useNavigate } from "react-router-dom";
+import { api, postContact } from "../../service";
+import { useNavigate, useParams } from "react-router-dom";
+import { HeaderContactsRegister } from "./Header";
 export const ContactRegister = () => {
   const [telNumber, setTelNumber] = useState();
   const [email, setEmail] = useState();
@@ -15,21 +16,33 @@ export const ContactRegister = () => {
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
   } = methods;
-
+  const { id } = useParams()
+  useEffect(()=>{
+    if(id){
+      api.get(`/getById/${id}`)
+      .then((response) => {
+          setValue('nome', response.data.nome)
+          setValue('telefone', response.data.telefone)
+          setValue('email', response.data.email)
+  
+      })
+        .catch((err) => {
+          return err
+        });
+     
+    }
+  })
   const addContact = (datas) => {
-    //console.log(navigate)
     navigate("/");
     postContact(datas);
   };
-  const onChangeFunction = (e) => {
-    console.log(e.target.value);
-    setTelNumber(e.target.value);
-  };
-
+  
   return (
     <FormProvider {...methods}>
+      <HeaderContactsRegister/>
       <form onSubmit={handleSubmit(addContact)}>
         <Grid
           container
@@ -43,34 +56,41 @@ export const ContactRegister = () => {
               sx={{
                 height: "50px",
                 width: "50px",
+                color: '#128C7E'
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} display='grid'>
+          <label>Nome:</label>
             <TextField
               {...register("nome")}
+              name='nome'
               onChange={(e) => setName(e.target.value)}
               id="outlined-basic"
-              label="Nome"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} display='grid'>
+            <label>Telefone:</label>
             <TextField
               {...register("telefone")}
+              name='telefone'
               onChange={(e) => setTelNumber(e.target.value)}
               id="outlined-basic"
-              label="Telefone"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12}  display='grid'>
+          <label>E-mail:</label>
             <TextField
+              name='email'
               {...register("email")}
               onChange={(e) => setEmail(e.target.value)}
               id="outlined-basic"
-              label="E-mail"
             />
           </Grid>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" 
+            sx={{
+                background: '#128C7E'
+              }}>
             Salvar
           </Button>
         </Grid>

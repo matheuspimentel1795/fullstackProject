@@ -1,10 +1,9 @@
-import TextField from '@mui/material/TextField';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState,useEffect } from 'react';
-import { Button, Grid } from '@mui/material';
-import CreateIcon from '@mui/icons-material/Create';
-import { useForm, FormProvider, useFormContext } from "react-hook-form"
-import getCon, { api, getContacts, postContact } from '../../service';
+import {  Grid } from '@mui/material';
+import { useForm} from "react-hook-form"
+import  { api } from '../../service';
 import {  useNavigate } from 'react-router-dom';
 import { HeaderContacts } from './Header';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -65,7 +64,6 @@ export const ContactHome = () =>{
                         <AccountCircleIcon sx={{width: '60px',height:'60px', color: '#128C7E'}}/>
                     <p>{item.nome}</p>
                     </Grid>
-                    <CreateIcon/>
                     </Grid>
                 )
             })}

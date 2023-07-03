@@ -1,6 +1,6 @@
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useState,useEffect } from 'react';
+import { useState,useEffect, useMemo } from 'react';
 import {  Grid } from '@mui/material';
 import { useForm} from "react-hook-form"
 import  { api } from '../../service';
@@ -8,6 +8,8 @@ import {  useNavigate } from 'react-router-dom';
 import { HeaderContacts } from './Header';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 export const ContactHome = () =>{
+    const { innerWidth: screenWidth } = window
+    const isMobile = useMemo(() => screenWidth < 768, [screenWidth])
     const [telNumber,setTelNumber] = useState()
     const [email,setEmail] = useState()
     const [name,setName] = useState()
@@ -50,7 +52,7 @@ export const ContactHome = () =>{
       }
     return (
         <Grid container collums={12}>
-            <Grid item xs={12} height={'80px'}>
+            <Grid item xs={12} height={isMobile? '80px': ''}>
                  <HeaderContacts onChangeFunction={onChangeFunction}/>
             </Grid>
             <Grid onClick={goToRegister} sx={{border:'1px solid black'}} item xs={12} gap={1} display={'flex'} alignItems={'center'}>

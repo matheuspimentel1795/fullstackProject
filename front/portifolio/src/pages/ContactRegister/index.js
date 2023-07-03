@@ -34,7 +34,7 @@ export const ContactRegister = () => {
         });
      
     }
-  })
+  },[])
   const addContact = (datas) => {
     if(id){
       putContact(datas,id)

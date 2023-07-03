@@ -25,4 +25,5 @@ Route::namespace('App\Http\Controllers\Api')->group(function(){
     Route::post('contatos/add', 'ContatoController@add');
     Route::get('getById/{id}','ContatoController@listById');
     Route::get('getAll','ContatoController@list');
+    Route::put('editar/{id}','ContatoController@update');
 });

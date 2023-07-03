@@ -24,3 +24,12 @@ export const postContact = (data)=>{
       });
 }
 
+export const putContact = (data,id)=>{
+  api.put(`/editar/${id}`,data)
+  .then((response) => {
+      return response
+  })
+    .catch((err) => {
+      return err
+    });
+}

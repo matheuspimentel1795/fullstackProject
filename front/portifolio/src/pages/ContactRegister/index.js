@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Button, Grid } from "@mui/material";
 
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
-import { api, postContact } from "../../service";
+import { api, postContact, putContact } from "../../service";
 import { useNavigate, useParams } from "react-router-dom";
 import { HeaderContactsRegister } from "./Header";
 export const ContactRegister = () => {
@@ -36,8 +36,14 @@ export const ContactRegister = () => {
     }
   })
   const addContact = (datas) => {
+    if(id){
+      putContact(datas,id)
+    }
+    else{
+      postContact(datas);
+    }
     navigate("/");
-    postContact(datas);
+    
   };
   
   return (
